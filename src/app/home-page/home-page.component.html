@@ -1,0 +1,83 @@
+<app-nav-bar></app-nav-bar>
+  <!-- Page Content -->
+  <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <h1 class="my-4">Category</h1>
+          <div class="list-group">
+            <a *ngFor="let c of category"
+            routerLink="/"
+            [queryParams]="{ category: c.catid }"
+            class="list-group-item list-group-item-action"
+            [class.active]="c.category === 'Bread'">   {{ c.category }} </a>
+          </div>
+        </div>
+      <!-- /.col-lg-3 -->
+      <div class="col-lg-9">
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="col">
+            <div class="row">
+              <ng-container *ngFor="let p of products; let i =index" >
+                <div class="col"> 
+                  <div class="card" style="width: 18rem;">
+                  <img  class="card-img-top" src="{{p.image}}" alt="...">
+                  <div class="card-body">
+                   <h5 class="card-title">{{ p.productName }}</h5>
+                   <p class="card-text">{{ p.descriptions }}</p>
+                   <p class="card-text">{{ p.price | currency:'INR':true }}</p>
+                   <a class="btn btn-primary" (click)="addToCart(p)">Add to Cart</a>
+                 </div>
+                 </div>
+                 </div>
+                 <div  *ngIf ="(i + 1)% 2 == 0" class="w-100" ></div>
+              </ng-container>
+            </div>
+          </div>
+      </div>
+      <div *ngIf="itemDivEnable">
+        <h1 class="my-4">Cart</h1>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let selectedItem of selectedProduct">
+              <td>{{selectedItem.productName}}</td>
+              <td>{{selectedItem.price | currency:'INR':true}}</td>
+            </tr>
+            <tr>
+              <th>Total</th>
+              <th>{{this.ProductTotal  | currency:'INR':true}}</th>
+            </tr>
+            <th>  
+               <button type="button" class="btn btn-primary" (click)="proceed(selectedProduct)">Proceed</button>
+            </th>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.col-lg-9 -->
+    </div>
+    <!-- /.row -->
+  </div>
+
+
+  
+  
+  
+  <!-- /.container -->
+  <!-- Footer -->
+  <footer class="py-0 bg-dark">
+    <div class="container">
+      <p class="m-0 text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+

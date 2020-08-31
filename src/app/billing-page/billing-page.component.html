@@ -1,0 +1,83 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="col-md-6" *ngIf="addressTemplateFlag">
+  <h2 class="text-center">Billing Page</h2>
+<form>
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input [(ngModel)]="addresss.firstName" placeholder="Full Name" name="firstName" class="form-control" id="firstName">
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input [(ngModel)]="addresss.lastName" placeholder="Last Name" name="lastName" class="form-control" id="lastName">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input [(ngModel)]="addresss.email" placeholder="Email" name="email" class="form-control" id="email">
+  </div>
+
+  <div class="form-group">
+    <label for="address">Address:</label>
+    <input [(ngModel)]="addresss.address" placeholder="Address" name="address" class="form-control" id="address">
+  </div>
+
+  <div class="form-group">
+    <label for="country">Country:</label>
+    <input [(ngModel)]="addresss.country" placeholder="Country" name="country" class="form-control" id="country">
+  </div>
+
+  <div class="form-group">
+    <label for="state">State:</label>
+    <input [(ngModel)]="addresss.state" placeholder="State" name="state" class="form-control" id="state">
+  </div>
+
+  <div class="form-group">
+    <label for="state">ZIP:</label>
+    <input [(ngModel)]="addresss.zip" placeholder="ZIP" name="state" class="form-control" id="zip">
+  </div>
+  <button class="btn btn-success" (click)="saveAddress()">Save Address</button>
+</form>
+</div>
+
+<div class="card bg-light mb-3" style="max-width: 18rem;" *ngIf="addressSaveFlag">
+  <div class="card-header">Address Saved</div>
+  <div class="card-body">
+    <h5 class="card-title"><strong>{{saveAdd.firstName}}  {{saveAdd.lastName}}</strong></h5>
+    <p class="card-text">Address: {{saveAdd.address}}</p>
+    <p class="card-text">Country: {{saveAdd.country}}</p>
+    <p class="card-text">State: {{saveAdd.state}}</p>
+    <p class="card-text">ZIP: {{saveAdd.zip}}</p>
+    <p class="card-text">Email: {{saveAdd.email}}</p>
+  </div>
+</div>
+
+
+<div class="col-md-6" *ngIf="addressSaveFlag" >
+  <h2 class="text-center">Payment</h2>
+<form>
+  <div class="form-group">
+    <label for="ccname">Card Name:</label>
+    <input [(ngModel)]="payment.ccname" placeholder="CARD NAME" name="ccname" class="form-control" id="ccname">
+  </div>
+
+   <div class="form-group">
+    <label for="ccnumber">Card Number:</label>
+    <input  [(ngModel)]="payment.ccnumber" placeholder="CARD NUMBER" name="ccnumber" class="input-lg form-control cc-number" id="ccnumber">
+  </div>
+
+  <div class="form-group">
+    <label for="ccexpiration">CCV Expiry Date:</label>
+    <input type="date" [(ngModel)]="payment.ccexpiration" placeholder="CCV EXP" name="ccexpiration" class="input-lg form-control cc-exp" id="ccexpiration">
+  </div>
+
+  <div class="form-group">
+    <label for="cccvv">CCV </label>
+    <input [(ngModel)]="payment.cccvv" placeholder="CCV" name="cccvv" class="input-lg form-control cc-cvc" id="cccvv">
+  </div>
+
+  
+  <button class="btn btn-success" (click)="proceedPayement()">Save Address</button>
+</form>
+</div>

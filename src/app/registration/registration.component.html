@@ -1,0 +1,31 @@
+<div class="alert alert-danger" role="alert" >
+    User name or password is incorrect please click on 
+    <a routerLink="/" class="alert alert-warning"><strong>Take me to Login page</strong></a> to re enter credentials or Sign Up below
+  </div>
+  
+  <div class="col-md-6">
+    <h2 class="text-center">Sign Up</h2>
+  <form>
+    <div class="form-group">
+      <label for="fullName">Full Name:</label>
+      <input [(ngModel)]="register.fullName" placeholder="Full Name" name="fullName" class="form-control" id="fullName">
+    </div>
+  
+    <div class="form-group">
+      <label for="userName">User Name:</label>
+     <input [(ngModel)]="register.userName" placeholder="User Name" name="userName" class="form-control" id="userName">
+    </div>
+  
+    <div class="form-group">
+      <label for="mobileNumber">Mobile Number:</label>
+     <input [(ngModel)]="register.mobileNumber" placeholder="Mobile Number" name="mobileNumber" class="form-control" id="mobileNumber">
+    </div>
+  
+    <div class="form-group">
+      <label for="address">Password:</label>
+     <input [(ngModel)]="register.password" placeholder="password" name="password" class="form-control" id="password">
+    </div>
+  
+    <button class="btn btn-success" (click)="createUser()">Sign Up</button>
+  </form>
+  </div>
