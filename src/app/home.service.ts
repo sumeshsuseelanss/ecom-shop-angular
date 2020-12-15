@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Category } from 'src/app/modals/Category';
+import { Itemselected } from 'src/app/modals/Itemselected';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -18,6 +19,14 @@ export class HomeService {
 
   getAllProducts():Observable<any>{
     return this.http.get<Category[]>((this.baseUrl+"products"));
+  }
+
+  public selectedItemPost(selectedItemJsonData){
+    console.log("selectedItemJsonData  -> ",selectedItemJsonData);
+    console.log("this.baseUrl archieveItem",this.baseUrl+"archieveItem");
+    console.log("Item_selected --> ",Itemselected);
+
+    return this.http.post<Itemselected>(this.baseUrl+"archieveItem",selectedItemJsonData);
   }
   
 

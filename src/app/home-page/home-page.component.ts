@@ -24,6 +24,7 @@ export class HomePageComponent implements OnInit {
   selectedProduct:[][] = [];
   cartItems=[];
   itemDivEnable = false;
+  selectedItemJsonData;
 
   lcoalStorageUserName:String = "";
  
@@ -59,7 +60,15 @@ export class HomePageComponent implements OnInit {
     }
     this.cartItem++;
     this.ProductTotal=-this.ProductTotal-procutCart.price;
-    console.log(this.ProductTotal);
+    var selectedItemJsonData={
+      selected_item: procutCart.productName, 
+      item_count:1,
+      item_price: procutCart.price,
+      user_id: this.lcoalStorageUserName
+    };
+    this.homeService.selectedItemPost(selectedItemJsonData).subscribe( data => {
+      alert("archieve pushed");
+    });
     localStorage.setItem("localStoageItemTotal","356");
     this.selectedProduct.push(procutCart);
     this.msg.sendMsg(this.selectedProduct);

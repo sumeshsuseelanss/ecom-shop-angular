@@ -19,6 +19,7 @@ employeeForm : FormGroup
 login: Login  = new Login();
 username
 hideRegister = true;
+hideError = false;
 
 @Output() cOutput =  new EventEmitter();
 
@@ -38,14 +39,13 @@ constructor( private loginService : LoginService,private router: Router) { }
   LoginUser(): void{
     this.username = this.employeeForm.controls.userName.value
     this.loginService.getUsers(this.username);
-    console.log("inside login component username value ",this.username)
-    if(this.username != 'sumesh'){
-      this.router.navigate(['register']);
-    }else{
-      localStorage.setItem("localStorageUserName",this.username);
-      console.log(localStorage.getItem("localStorageUserName"));
-      this.router.navigate(['home']);
-    }
+    this.hideError = true;
+
+  //   if(this.responseStatus == '500'){
+  //     console.log("may be ",this.responseStatus);
+  //    this.router.navigate(['register']);
+  //  }
+  
   }
 
   

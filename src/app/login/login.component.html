@@ -65,6 +65,9 @@
           </div>
       </form>
   </div>
+  <div class="alert alert-danger" *ngIf="hideError"> 
+    <strong>Oops!!!</strong> Wrong credentials <a href="/register" class="alert-link"> Click th link to sign up!!! </a>.
+  </div>
 </div>
 </nav>
 

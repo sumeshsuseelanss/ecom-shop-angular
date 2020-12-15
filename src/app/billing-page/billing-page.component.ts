@@ -3,6 +3,7 @@ import { Address } from '../modals/Address';
 import { Payment } from '../modals/Payment';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+import { BillingService } from '../billing.service';
 
 @Component({
   selector: 'app-billing-page',
@@ -17,7 +18,7 @@ export class BillingPageComponent implements OnInit {
   savePayment;
   addressTemplateFlag =true;
   addressSaveFlag = false;
-  constructor(private router: Router) { }
+  constructor(private router: Router,private billingService: BillingService) { }
 
   ngOnInit(): void {
   }
@@ -27,6 +28,10 @@ export class BillingPageComponent implements OnInit {
     this.addressTemplateFlag =false;
     this.addressSaveFlag=true;
     this.saveAdd = this.addresss;
+    console.log("Save Address---> ",this.saveAdd);
+    this.billingService.postAddress(this.saveAdd).subscribe( data => {
+      alert(" pushed");
+    });
     localStorage.setItem("addressLocalStoage",JSON.stringify(this.saveAdd));
   }
 
