@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RegisterServiceService } from '../register-service.service';
+import { RegisterServiceService } from '../service/register-service.service';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { Register } from '../modals/Register';

@@ -19,14 +19,16 @@ export class LoginService {
   public getUsers(paramValaue) {
     this.baseUrl = this.baseUrl+paramValaue;
     this.userNameLogin = paramValaue;
-    this.respBody =this.http.get<Login[]>((this.baseUrl), {observe: 'response'}).subscribe((response) =>{
 
+    this.respBody =this.http.get<Login[]>((this.baseUrl), {observe: 'response'}).subscribe((response) =>{
+         console.log("testing getUsers --- >");
      this.responseStatus=response.status
      console.log("responseStatus --> ",this.responseStatus);
     if(this.responseStatus == 200){
       console.log("paramValue ---> ",paramValaue);
      localStorage.setItem("localStorageUserName",paramValaue);
      console.log(localStorage.getItem("localStorageUserName"));
+     console.log("should navigate to home!!")
       this.router.navigate(['home']);
     }
      }

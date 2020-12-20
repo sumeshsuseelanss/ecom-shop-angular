@@ -3,7 +3,7 @@ import { Address } from '../modals/Address';
 import { Payment } from '../modals/Payment';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { BillingService } from '../billing.service';
+import { BillingService } from '../service/billing.service';
 
 @Component({
   selector: 'app-billing-page',
@@ -33,10 +33,10 @@ export class BillingPageComponent implements OnInit {
       alert(" pushed");
     });
     localStorage.setItem("addressLocalStoage",JSON.stringify(this.saveAdd));
+
   }
 
   proceedPayement(){
-    console.log("payment - > ",this.payment);
     this.savePayment =this.payment;
     localStorage.setItem("paymentLocalStoage",this.savePayment);
     this.router.navigate(['summary']);

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login.service';
-import { HomeService } from '../home.service';
+import { LoginService } from '../service/login.service';
+import { HomeService } from '../service/home.service';
 import { Router } from '@angular/router';
-import { MessengerService } from '../messenger.service';
+import { MessengerService } from '../service/messenger.service';
 
 @Component({
   selector: 'app-nav-bar',

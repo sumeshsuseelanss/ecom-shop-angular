@@ -8,16 +8,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { LoginService } from './login.service';
-import { RegisterServiceService } from './register-service.service';
+import { LoginService } from './service/login.service';
+import { RegisterServiceService } from './service/register-service.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { CartComponent } from './cart/cart.component';
-import { MessengerService } from './messenger.service';
-import { HomeService } from './home.service';
+import { MessengerService } from './service/messenger.service';
+import { HomeService } from './service/home.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BillingPageComponent } from './billing-page/billing-page.component';
 import { SummaryPageComponent } from './summary-page/summary-page.component';
+import { AdminGuardGuard } from './admin-guard.guard'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { SummaryPageComponent } from './summary-page/summary-page.component';
       },
       {
         path: 'home',
-      component: HomePageComponent
+      component: HomePageComponent,
       },
       {
         path: 'register',
@@ -51,11 +52,13 @@ import { SummaryPageComponent } from './summary-page/summary-page.component';
       },
       {
       path: 'cart',
-      component: CartComponent
+      component: CartComponent,
+      canActivate: [AdminGuardGuard]
       },
       {
         path: 'bill',
-        component: BillingPageComponent
+        component: BillingPageComponent,
+        canActivate: [AdminGuardGuard]
       },
       {
         path: 'summary',

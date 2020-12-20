@@ -12,19 +12,19 @@
         <div class="pt-4 wish-list">
 
           <h5 class="mb-4">Items in Cart</h5>
-          <div class="row mb-4"  *ngFor="let itemCart of cartStorageItem" >
+          <div class="row mb-4"  *ngFor="let itemCart of cartItemResponse" >
             <div class="col-md-5 col-lg-3 col-xl-3">
               <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                 <img class="img-fluid w-100"
-                src="{{itemCart.image}}" alt="Sample">
+                src="{{itemCart.item_image}}" alt="Sample">
               </div>
             </div>
             <div class="col-md-7 col-lg-9 col-xl-9" >
               <div>
                 <div class="d-flex justify-content-between">
                   <div>
-                    <h5>{{itemCart.productName}}</h5>
-                    <p class="mb-3 text-muted text-uppercase small">{{itemCart.descriptions}}</p>
+                    <h5>{{itemCart.selected_item}}</h5>
+                 <!----   <p class="mb-3 text-muted text-uppercase small">{{itemCart.descriptions}}</p> -->
                   </div>
                   <div>
                     <div class="def-number-input number-input safari_only mb-0 w-100">
@@ -46,7 +46,7 @@
                     <a href="#!" type="button" class="card-link-secondary small text-uppercase"><i
                         class="fas fa-heart mr-1"></i> Move to wish list </a>
                   </div>
-                  <p><span><strong id="summary">{{itemCart.price | currency:'INR':true }}</strong></span></p>
+                  <p><span><strong id="summary">{{itemCart.item_price | currency:'INR':true }}</strong></span></p>
                 </div>
               </div>
             </div>

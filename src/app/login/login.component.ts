@@ -3,9 +3,10 @@ import { FormGroup,FormControl, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Register } from 'src/app/modals/Register';
 import { Login } from 'src/app/modals/Login';
-import {RegisterServiceService} from 'src/app/register-service.service';
-import {LoginService} from 'src/app/login.service';
+import {RegisterServiceService} from 'src/app/service/register-service.service';
+import {LoginService} from 'src/app/service/login.service';
 import { Router } from '@angular/router';
+import { LoginAuthService } from '../login-auth.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ hideError = false;
 
 @Output() cOutput =  new EventEmitter();
 
-constructor( private loginService : LoginService,private router: Router) { }  
+constructor( private loginService : LoginService,private router: Router,
+  private loginAuthService: LoginAuthService) { }  
 
 
   ngOnInit() {
@@ -39,14 +41,6 @@ constructor( private loginService : LoginService,private router: Router) { }
   LoginUser(): void{
     this.username = this.employeeForm.controls.userName.value
     this.loginService.getUsers(this.username);
-    this.hideError = true;
-
-  //   if(this.responseStatus == '500'){
-  //     console.log("may be ",this.responseStatus);
-  //    this.router.navigate(['register']);
-  //  }
-  
+    this.hideError = true
   }
-
-  
 }

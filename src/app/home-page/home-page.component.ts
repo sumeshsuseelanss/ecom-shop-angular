@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { LoginComponent } from '../login/login.component'
-import { LoginService } from '../login.service';
-import { HomeService } from '../home.service';
+import { LoginService } from '../service/login.service';
+import { HomeService } from '../service/home.service';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { MessengerService } from '../messenger.service';
+import { MessengerService } from '../service/messenger.service';
 import { Router } from '@angular/router';
 import { stringify } from '@angular/compiler/src/util';
 
@@ -25,6 +25,8 @@ export class HomePageComponent implements OnInit {
   cartItems=[];
   itemDivEnable = false;
   selectedItemJsonData;
+  itemCount=0;
+  data;
 
   lcoalStorageUserName:String = "";
  
@@ -58,20 +60,27 @@ export class HomePageComponent implements OnInit {
     if(this.cartItem != 0){
       this.itemDivEnable = true
     }
-    this.cartItem++;
-    this.ProductTotal=-this.ProductTotal-procutCart.price;
-    var selectedItemJsonData={
+    console.log("procutCart.productName ---> ",procutCart.productName)
+    this.homeService.getCountOfItem(procutCart.productName).subscribe( itemCount =>{
+      this.itemCount = itemCount;
+    });
+  console.log("this.itemCount ----------> ",this.itemCount );
+  if(this.itemCount == 0){
+     this.cartItem++;
+     this.ProductTotal=Number(this.ProductTotal)+Number(procutCart.price);
+     var selectedItemJsonData={
       selected_item: procutCart.productName, 
       item_count:1,
       item_price: procutCart.price,
+      item_image:procutCart.image,
       user_id: this.lcoalStorageUserName
-    };
+     };
     this.homeService.selectedItemPost(selectedItemJsonData).subscribe( data => {
-      alert("archieve pushed");
+      this.data = data;
     });
-    localStorage.setItem("localStoageItemTotal","356");
     this.selectedProduct.push(procutCart);
     this.msg.sendMsg(this.selectedProduct);
+  }
     
   }
 

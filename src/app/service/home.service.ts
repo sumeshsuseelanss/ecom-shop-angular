@@ -25,8 +25,11 @@ export class HomeService {
     console.log("selectedItemJsonData  -> ",selectedItemJsonData);
     console.log("this.baseUrl archieveItem",this.baseUrl+"archieveItem");
     console.log("Item_selected --> ",Itemselected);
-
     return this.http.post<Itemselected>(this.baseUrl+"archieveItem",selectedItemJsonData);
+  }
+
+  getCountOfItem(itemForCount):Observable<any>{
+    return this.http.get<Category[]>((this.baseUrl+"itemsCount/"+itemForCount));
   }
   
 
