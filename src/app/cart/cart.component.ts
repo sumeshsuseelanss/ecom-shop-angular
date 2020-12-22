@@ -17,6 +17,8 @@ export class CartComponent implements OnInit {
   cartItemResponse=[];
   userName;
   cartItems$
+  deletedItem$;
+  totalAmount;
   private baseUrl = 'http://localhost:8082/api/v1/items/'; 
 
   constructor(private msgCart: MessengerService,private router: Router,
@@ -34,12 +36,30 @@ export class CartComponent implements OnInit {
     console.log(this.cartStorageItem);
     this.cartTotal=localStorage.getItem("localStoageItemTotal");
     console.log("cart tool",this.cartTotal);
+    this.itemTotalAmount();
   
   }
 
   continueCart(){
     
     this.router.navigate(['bill']);
+  }
+
+  deleteItem(item){
+    this.cartService.deleteCartItem(item).subscribe(deletedItem => {
+      
+    }
+    );
+    window.location.reload();
+    this.itemTotalAmount();
+    window.location.reload();
+  }
+
+  itemTotalAmount(){
+    this.cartService.totalAmount().subscribe(totalAmount => {
+      this.totalAmount = totalAmount;
+    }
+    );
   }
 
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Login } from 'src/app/modals/Login';
 import { Router } from '@angular/router';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class LoginService {
   public getUsers(paramValaue) {
     this.baseUrl = this.baseUrl+paramValaue;
     this.userNameLogin = paramValaue;
-
+    console.log("login api --> ",this.baseUrl);
     this.respBody =this.http.get<Login[]>((this.baseUrl), {observe: 'response'}).subscribe((response) =>{
          console.log("testing getUsers --- >");
      this.responseStatus=response.status

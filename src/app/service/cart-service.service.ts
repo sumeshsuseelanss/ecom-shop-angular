@@ -8,13 +8,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CartServiceService {
-  private baseUrl = 'http://localhost:8082/api/v1/items/';  
+  private baseUrl = 'http://localhost:8082/api/v1/';  
   userName;
   cartItems$;
   constructor(private http: HttpClient,private router: Router) { }
 
   getCartItems(): Observable<any> {
     this.userName = localStorage.getItem("localStorageUserName");
-    return this.http.get<Itemselected[]>((this.baseUrl+this.userName));
+    return this.http.get<Itemselected[]>((this.baseUrl+"items/"+this.userName));
  }
+ deleteCartItem(item): Observable<any> {
+  this.userName = localStorage.getItem("localStorageUserName");
+  return this.http.delete<Itemselected[]>((this.baseUrl+"delete/"+item+"/"+this.userName));
+}
+
+totalAmount(){
+  return this.http.get<Itemselected[]>((this.baseUrl+"items/total/"+this.userName));
+}
+
 }

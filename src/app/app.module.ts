@@ -52,13 +52,11 @@ import { AdminGuardGuard } from './admin-guard.guard'
       },
       {
       path: 'cart',
-      component: CartComponent,
-      canActivate: [AdminGuardGuard]
+      component: CartComponent
       },
       {
         path: 'bill',
-        component: BillingPageComponent,
-        canActivate: [AdminGuardGuard]
+        component: BillingPageComponent
       },
       {
         path: 'summary',

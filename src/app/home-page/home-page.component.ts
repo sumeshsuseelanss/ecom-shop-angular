@@ -58,10 +58,10 @@ export class HomePageComponent implements OnInit {
   
   addToCart(procutCart){
     if(this.cartItem != 0){
-      this.itemDivEnable = true
-    }
+       this.itemDivEnable = true
+     }
     console.log("procutCart.productName ---> ",procutCart.productName)
-    this.homeService.getCountOfItem(procutCart.productName).subscribe( itemCount =>{
+    this.homeService.getCountOfItem(procutCart.productName,this.lcoalStorageUserName).subscribe( itemCount =>{
       this.itemCount = itemCount;
     });
   console.log("this.itemCount ----------> ",this.itemCount );

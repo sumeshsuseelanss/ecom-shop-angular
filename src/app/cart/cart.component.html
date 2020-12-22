@@ -36,23 +36,18 @@
                     </div>
                     <small id="passwordHelpBlock" class="form-text text-muted text-center">
                       (Note, 1 piece)
-                    </small>
+                    </small> 
                   </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3"><i
-                        class="fas fa-trash-alt mr-1"></i> Remove item </a>
-                    <a href="#!" type="button" class="card-link-secondary small text-uppercase"><i
-                        class="fas fa-heart mr-1"></i> Move to wish list </a>
+                    <button type="button" class="btn btn-secondary btn-sm" (click)="deleteItem(itemCart.selected_item)">Remove Item</button> 
                   </div>
                   <p><span><strong id="summary">{{itemCart.item_price | currency:'INR':true }}</strong></span></p>
                 </div>
               </div>
             </div>
           </div>
-          <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
-            items to your cart does not mean booking them.</p>
         </div>
       </div>
       
@@ -70,7 +65,7 @@
           <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (INR)</span>
-              <strong>{{cartTotal | currency:'INR':true}}</strong>
+              <strong>{{totalAmount | currency:'INR':true}}</strong>
             </li>
           </ul>
     
