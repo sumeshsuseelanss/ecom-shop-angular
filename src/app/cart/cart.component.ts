@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   cartItems$
   deletedItem$;
   totalAmount;
+  cartFlag: boolean = true;
   private baseUrl = 'http://localhost:8082/api/v1/items/'; 
 
   constructor(private msgCart: MessengerService,private router: Router,
@@ -58,8 +59,13 @@ export class CartComponent implements OnInit {
   itemTotalAmount(){
     this.cartService.totalAmount().subscribe(totalAmount => {
       this.totalAmount = totalAmount;
-    }
+      if(this.totalAmount == null){
+        this.cartFlag = false;
+      }
+      }
     );
+
+    
   }
 
 }

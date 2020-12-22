@@ -11,6 +11,7 @@ export class CartServiceService {
   private baseUrl = 'http://localhost:8082/api/v1/';  
   userName;
   cartItems$;
+  cartFlag = true;
   constructor(private http: HttpClient,private router: Router) { }
 
   getCartItems(): Observable<any> {
