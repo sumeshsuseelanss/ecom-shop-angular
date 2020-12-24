@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   cartItems$
   deletedItem$;
   totalAmount;
+  itemAmount;
   cartFlag: boolean = true;
   private baseUrl = 'http://localhost:8082/api/v1/items/'; 
 
@@ -64,8 +65,49 @@ export class CartComponent implements OnInit {
       }
       }
     );
-
-    
   }
+
+  amountIncrease(itemSelectedDOM,itemCount,item_price,itemCart){
+    if(Number(itemCount) >= 0){
+    let divideInt = Number(item_price)/Number(itemCount);
+    console.log("item_price ",item_price,"itemCount ",itemCount,"divideInt ",divideInt)
+   let updatedItemCount = Number(itemCount)+1;
+   let amountToUpdate  = Number(updatedItemCount) *  Number(divideInt);
+     this.cartService.updateItemCount(itemSelectedDOM,updatedItemCount,itemCart).subscribe(itemAmount => {
+    }
+    );
+    this.cartService.updateItemAmount(itemSelectedDOM,amountToUpdate,itemCart).subscribe(updateAmount => {
+    }
+    );
+    window.location.reload();
+    this.itemTotalAmount();
+    window.location.reload();
+  }else{
+    this.deleteItem(itemSelectedDOM);
+  }
+  }
+
+  amountDecrease(itemSelectedDOM,itemCount,item_price,itemCart){
+    if(Number(itemCount) >= 0){
+    let divideInt = Number(item_price)/Number(itemCount);
+    console.log("item_price ",item_price,"itemCount ",itemCount,"divideInt ",divideInt)
+    let updatedItemCount = Number(itemCount)-1;
+    console.log("amountDecrease --- ",itemSelectedDOM,updatedItemCount,itemCart);
+    let amountToUpdate  = Number(updatedItemCount) *  Number(divideInt);
+      this.cartService.updateItemCount(itemSelectedDOM,updatedItemCount,itemCart).subscribe(itemAmount => {
+     }
+     );
+      this.cartService.updateItemAmount(itemSelectedDOM,amountToUpdate,itemCart).subscribe(updateAmount => {
+     }
+      );
+     window.location.reload();
+     this.itemTotalAmount();
+     window.location.reload();
+    }else {
+      this.deleteItem(itemSelectedDOM);
+    }
+
+
+   }
 
 }

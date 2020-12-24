@@ -27,4 +27,15 @@ totalAmount(){
   return this.http.get<Itemselected[]>((this.baseUrl+"items/total/"+this.userName));
 }
 
+updateItemCount(ItemSelected,updatedAmount,itemCart): Observable<any>{
+  console.log("ItemSelected,updatedAmount ---> ",ItemSelected,updatedAmount);
+  return this.http.put<Itemselected[]>((this.baseUrl+"items/update/"+ItemSelected+"/"+updatedAmount+"/"+this.userName),itemCart);
+}
+
+updateItemAmount(ItemSelected,updatedAmount,itemCart): Observable<any>{
+
+  return this.http.put<Itemselected[]>((this.baseUrl+"item/amountupdate/"+ItemSelected+"/"+updatedAmount+"/"+this.userName),itemCart);
+}
+
+
 }

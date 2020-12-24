@@ -25,14 +25,14 @@
                 <div class="d-flex justify-content-between">
                   <div>
                     <h5>{{itemCart.selected_item}}</h5>
-                 <!----   <p class="mb-3 text-muted text-uppercase small">{{itemCart.descriptions}}</p> -->
+                   <p class="mb-3 text-muted text-uppercase small">{{itemCart.descriptions}}</p>
                   </div>
                   <div>
                     <div class="def-number-input number-input safari_only mb-0 w-100">
-                      <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                      <button (click)="amountDecrease(itemCart.selected_item,itemCart.item_count,itemCart.item_price,itemCart)"
                         class="minus decrease"></button>
-                      <input class="quantity" min="0" name="quantity" value="1" type="number">
-                      <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                      <input class="quantity" min="0" name="{{itemCart.selected_item}}" value="{{itemCart.item_count}}" type="number">
+                      <button (click)="amountIncrease(itemCart.selected_item,itemCart.item_count,itemCart.item_price,itemCart)"
                         class="plus increase"></button>
                     </div>
                     <small id="passwordHelpBlock" class="form-text text-muted text-center">
