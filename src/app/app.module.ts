@@ -47,6 +47,10 @@ import { AdminGuardGuard } from './admin-guard.guard'
       component: HomePageComponent,
       },
       {
+        path: 'home/:id',
+      component: HomePageComponent,
+      },
+      {
         path: 'register',
       component: RegistrationComponent
       },

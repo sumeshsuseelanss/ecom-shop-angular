@@ -38,6 +38,12 @@ export class HomeService {
   getCountOfItem(itemForCount,username):Observable<any>{
     return this.http.get<Category[]>((this.baseUrl+"itemsCount/"+itemForCount+"/"+username));
   }
+
+
+  getFilteredProducts(categoryName){
+    return this.http.get<Category[]>((this.baseUrl+"products/"+categoryName));
+  
+  }
   
 
 }

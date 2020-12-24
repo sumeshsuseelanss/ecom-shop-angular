@@ -96,4 +96,15 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['cart']);
   }
 
+
+  filterCategory(categoryName){
+    if(categoryName == 'All'){
+      this.homeService.getAllProducts().subscribe(products=> 
+        this.products=products);
+    }else{
+    this.homeService.getFilteredProducts(categoryName).subscribe(products=> 
+      this.products=products);
+    }
+  }
+
 }
