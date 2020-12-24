@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CartServiceService } from '../service/cart-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Itemselected } from '../modals/Itemselected';
+import { HomeService } from '../service/home.service';
 
 @Component({
   selector: 'app-cart',
@@ -21,10 +22,13 @@ export class CartComponent implements OnInit {
   totalAmount;
   itemAmount;
   cartFlag: boolean = true;
+  lcoalStorageUserName;
+  lcoalStorageCartCount;
+  totalCount;
   private baseUrl = 'http://localhost:8082/api/v1/items/'; 
 
   constructor(private msgCart: MessengerService,private router: Router,
-    private cartService : CartServiceService,private http: HttpClient) { }
+    private cartService : CartServiceService,private http: HttpClient,private homeService: HomeService) { }
 
   ngOnInit() {
 
@@ -39,6 +43,7 @@ export class CartComponent implements OnInit {
     this.cartTotal=localStorage.getItem("localStoageItemTotal");
     console.log("cart tool",this.cartTotal);
     this.itemTotalAmount();
+    this.cartRefresh();
   
   }
 
@@ -52,6 +57,7 @@ export class CartComponent implements OnInit {
       
     }
     );
+    this.cartRefresh();
     window.location.reload();
     this.itemTotalAmount();
     window.location.reload();
@@ -79,11 +85,17 @@ export class CartComponent implements OnInit {
     this.cartService.updateItemAmount(itemSelectedDOM,amountToUpdate,itemCart).subscribe(updateAmount => {
     }
     );
+    this.cartRefresh();
     window.location.reload();
     this.itemTotalAmount();
     window.location.reload();
   }else{
     this.deleteItem(itemSelectedDOM);
+    this.cartRefresh();
+    window.location.reload();
+    this.itemTotalAmount();
+    window.location.reload();
+   
   }
   }
 
@@ -100,14 +112,28 @@ export class CartComponent implements OnInit {
       this.cartService.updateItemAmount(itemSelectedDOM,amountToUpdate,itemCart).subscribe(updateAmount => {
      }
       );
+      this.cartRefresh();
      window.location.reload();
      this.itemTotalAmount();
      window.location.reload();
     }else {
       this.deleteItem(itemSelectedDOM);
+      this.cartRefresh();
+      window.location.reload();
+      this.itemTotalAmount();
+      window.location.reload();
     }
 
 
+   }
+
+   cartRefresh(){
+    this.lcoalStorageUserName= localStorage.getItem("localStorageUserName");
+    this.homeService.getCartCount(this.lcoalStorageUserName).subscribe( totalCount =>{
+      this.totalCount = totalCount;
+      localStorage.setItem('lcoalStorageCartCount',this.totalCount);
+    this.lcoalStorageCartCount =  localStorage.getItem('lcoalStorageCartCount');
+    }); 
    }
 
 }

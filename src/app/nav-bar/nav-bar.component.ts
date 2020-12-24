@@ -12,12 +12,14 @@ import { MessengerService } from '../service/messenger.service';
 export class NavBarComponent implements OnInit {
 
   lcoalStorageUserName:String = "";
+  lcoalStorageCartCount:String = "";
 
   constructor(private loginObj : LoginService,private homeService : HomeService,
     private msg: MessengerService,private router: Router) { }
 
   ngOnInit(): void {
     this.lcoalStorageUserName= localStorage.getItem("localStorageUserName");
+    this.lcoalStorageCartCount= localStorage.getItem("lcoalStorageCartCount")
 
   }
 

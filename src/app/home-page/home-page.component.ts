@@ -27,9 +27,10 @@ export class HomePageComponent implements OnInit {
   selectedItemJsonData;
   itemCount=0;
   data;
+  totalCount;
 
   lcoalStorageUserName:String = "";
- 
+
 
   constructor(private loginObj : LoginService,private homeService : HomeService,
     private msg: MessengerService,private router: Router) { 
@@ -49,7 +50,10 @@ export class HomePageComponent implements OnInit {
     this.subscription =  this.homeService.getAllProducts().subscribe(products=> 
     this.products=products);
     this.lcoalStorageUserName= localStorage.getItem("localStorageUserName");
-
+    this.homeService.getCartCount(this.lcoalStorageUserName).subscribe( totalCount =>{
+      this.totalCount = totalCount;
+      localStorage.setItem('lcoalStorageCartCount',this.totalCount);
+    }); 
      this.msg.getMsg().subscribe(product =>{
        console.log("inside getMsg--Home Component",product)
      } ) 
@@ -78,6 +82,8 @@ export class HomePageComponent implements OnInit {
     this.homeService.selectedItemPost(selectedItemJsonData).subscribe( data => {
       this.data = data;
     });
+   
+
     this.selectedProduct.push(procutCart);
     this.msg.sendMsg(this.selectedProduct);
   }

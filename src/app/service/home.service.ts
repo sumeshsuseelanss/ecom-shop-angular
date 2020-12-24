@@ -20,6 +20,13 @@ export class HomeService {
   getAllProducts():Observable<any>{
     return this.http.get<Category[]>((this.baseUrl+"products"));
   }
+  
+  getCartCount(sessionUser):Observable<any>{
+    console.log(this.baseUrl+"itemsCount/"+sessionUser);
+    let num = this.http.get<Category[]>((this.baseUrl+"itemsCount/"+sessionUser));
+    console.log("num ----> ");
+    return num;
+  }
 
   public selectedItemPost(selectedItemJsonData){
     console.log("selectedItemJsonData  -> ",selectedItemJsonData);
