@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Address } from '../modals/Address';
+import { BillingService } from '../service/billing.service';
+import { CartServiceService } from '../service/cart-service.service';
 
 @Component({
   selector: 'app-summary-page',
@@ -11,18 +14,26 @@ export class SummaryPageComponent implements OnInit {
   summaryPayment;
   summaryItem=[];;
   summaryItemTotal;
-  constructor() { }
+  summaryItemResponse=[];
+  summaryAddress;
+  constructor(private router: Router,private billingService: BillingService,private cartService : CartServiceService) {
+
+   }
 
   ngOnInit(): void {
-    this.summaryAdress=JSON.parse(localStorage.getItem("addressLocalStoage"));
-    this.summaryPayment=localStorage.getItem("paymentLocalStoage");
-    this.summaryItem=JSON.parse(localStorage.getItem("storageProductSelected"));
-    this.summaryItemTotal=localStorage.getItem("storageProductSelected");
-    console.log("address -->",this.summaryAdress)
+    this.cartService.getCartItems().subscribe(summaryItemResponse =>{
+      this.summaryItemResponse=summaryItemResponse;
+      console.log("get cart --> ",summaryItemResponse);
+    }
+    );
+
+    this.summaryAddress = JSON.parse(localStorage.getItem("addressLocalStoage"));
+    console.log("this.summaryAddress -----> ",this.summaryAddress);
+    
   }
 
   OrderProceed(){
-    console.log("Order Now ...");
+    this.router.navigate(['order']);
   }
 
 }

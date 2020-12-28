@@ -19,7 +19,8 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.lcoalStorageUserName= localStorage.getItem("localStorageUserName");
-    this.lcoalStorageCartCount= localStorage.getItem("lcoalStorageCartCount")
+    this.lcoalStorageCartCount= localStorage.getItem("lcoalStorageCartCount");
+    
 
   }
 

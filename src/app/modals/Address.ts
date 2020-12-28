@@ -6,5 +6,6 @@ export class Address {
  country:string;
  state:string;
  zip:number;
+ user_ID:string;
  
   }

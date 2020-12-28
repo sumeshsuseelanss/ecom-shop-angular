@@ -59,7 +59,7 @@
 <form>
   <div class="form-group">
     <label for="ccname">Card Name:</label>
-    <input [(ngModel)]="payment.ccname" placeholder="CARD NAME" name="ccname" class="form-control" id="ccname">
+    <input maxlength="3" [(ngModel)]="payment.ccname" placeholder="CARD NAME" name="ccname" class="form-control" id="ccname">
   </div>
 
    <div class="form-group">

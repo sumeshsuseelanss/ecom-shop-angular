@@ -18,7 +18,8 @@ import { HomeService } from './service/home.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BillingPageComponent } from './billing-page/billing-page.component';
 import { SummaryPageComponent } from './summary-page/summary-page.component';
-import { AdminGuardGuard } from './admin-guard.guard'
+import { AdminGuardGuard } from './admin-guard.guard';
+import { OrderComponent } from './order/order.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AdminGuardGuard } from './admin-guard.guard'
     CartComponent,
     NavBarComponent,
     BillingPageComponent,
-    SummaryPageComponent
+    SummaryPageComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,10 @@ import { AdminGuardGuard } from './admin-guard.guard'
       {
         path: 'summary',
         component: SummaryPageComponent
+      },
+      {
+        path: 'order',
+        component: OrderComponent
       }
     ])
   ],

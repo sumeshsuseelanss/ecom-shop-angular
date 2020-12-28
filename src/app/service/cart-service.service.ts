@@ -16,6 +16,7 @@ export class CartServiceService {
 
   getCartItems(): Observable<any> {
     this.userName = localStorage.getItem("localStorageUserName");
+    console.log(this.baseUrl+"items/"+this.userName);
     return this.http.get<Itemselected[]>((this.baseUrl+"items/"+this.userName));
  }
  deleteCartItem(item): Observable<any> {

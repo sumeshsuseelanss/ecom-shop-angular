@@ -18,6 +18,7 @@ export class BillingPageComponent implements OnInit {
   savePayment;
   addressTemplateFlag =true;
   addressSaveFlag = false;
+  data=[];
   constructor(private router: Router,private billingService: BillingService) { }
 
   ngOnInit(): void {
@@ -28,9 +29,10 @@ export class BillingPageComponent implements OnInit {
     this.addressTemplateFlag =false;
     this.addressSaveFlag=true;
     this.saveAdd = this.addresss;
+  
     console.log("Save Address---> ",this.saveAdd);
     this.billingService.postAddress(this.saveAdd).subscribe( data => {
-      alert(" pushed");
+  
     });
     localStorage.setItem("addressLocalStoage",JSON.stringify(this.saveAdd));
 
