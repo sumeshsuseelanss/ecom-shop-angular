@@ -19,6 +19,24 @@ export class BillingPageComponent implements OnInit {
   addressTemplateFlag =true;
   addressSaveFlag = false;
   data=[];
+
+  selectedCountry:Country = new Country(2, 'India');
+  countries = [
+     new Country(1, 'USA' ),
+     new Country(2, 'India' ),
+     new Country(3, 'Australia' ),
+     new Country(4, 'Brazil')
+  ];
+
+  selectedState:State = new State(2, 'Karnataka');
+    states = [
+     new State(1, 'Tamil Nadu' ),
+     new State(2, 'Kerala' ),
+     new State(3, 'Karnataka' ),
+     new State(4, 'Andra pradesh'),
+     new State(5, 'Maharashtra')
+  ];
+  
   constructor(private router: Router,private billingService: BillingService) { }
 
   ngOnInit(): void {
@@ -45,4 +63,13 @@ export class BillingPageComponent implements OnInit {
   }
 
 
+}
+
+export class Country {
+  constructor(public id: number, public name: string) { }
+}
+
+
+export class State {
+  constructor(public id: number, public name: string) { }
 }

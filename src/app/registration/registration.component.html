@@ -18,8 +18,13 @@
     </div>
   
     <div class="form-group">
-      <label for="address">Password:</label>
-     <input [(ngModel)]="register.password" placeholder="password" name="password" class="form-control" id="password">
+      <label for="address">Enter password:</label>
+     <input [(ngModel)]="register.password" placeholder="password" name="password" class="form-control" id="password" type="password">
+    </div>
+
+    <div class="form-group">
+      <label for="address">Confirm password:</label>
+     <input  placeholder="password" name="password" class="form-control" id="password" type="password">
     </div>
   
     <button class="btn btn-success" (click)="createUser()">Sign Up</button>

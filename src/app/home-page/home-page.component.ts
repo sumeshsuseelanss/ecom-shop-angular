@@ -30,6 +30,7 @@ export class HomePageComponent implements OnInit {
   totalCount;
 
   lcoalStorageUserName:String = "";
+  localStorageProduct;
 
 
   constructor(private loginObj : LoginService,private homeService : HomeService,
@@ -61,6 +62,7 @@ export class HomePageComponent implements OnInit {
   }
   
   addToCart(procutCart){
+    localStorage.setItem('localStorageProduct',procutCart);
     if(this.cartItem != 0){
        this.itemDivEnable = true
      }
