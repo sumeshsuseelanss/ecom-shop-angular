@@ -3,13 +3,16 @@
   <div class="container">
       <div class="row">
         <div class="col-lg-3">
-          <h1 class="my-4">Category</h1>
-          <div class="list-group">
-            <a *ngFor="let c of category; let i = index"
-            routerLink="/home"
-            [queryParams]="{ category: c.catID }"
-            class="list-group-item list-group-item-action"
-            [class.active]="c.catID === 'i'" (click)="filterCategory(c.category)"> {{ c.category }} </a>
+       
+          <div class="sticky-top">
+            <h1 class="my-4">Category</h1>
+            <div class="list-group">
+              <a *ngFor="let c of category; let i = index"
+              routerLink="/home"
+              [queryParams]="{ category: c.$catID }"
+              class="list-group-item list-group-item-action"
+              [class.active]="c.catID === 'i'" (click)="filterCategory(c.category)"> {{ c.category }} </a>
+            </div>        
           </div>
         </div>
       <!-- /.col-lg-3 -->
@@ -22,19 +25,21 @@
           </ol>
           <div class="col">
             <div class="row">
-              <ng-container *ngFor="let p of products; let i =index" >
+              <ng-container *ngFor="let p of products ; let i =index" >
                 <div class="col"> 
-                  <div class="card" style="width: 12rem;">
+                  <div class="card" style="width: 19rem;">
                   <img  class="card-img-top" src="{{p.image}}" alt="...">
                   <div class="card-body">
                    <h5 class="card-title">{{ p.productName }}</h5>
                    <p class="card-text">{{ p.descriptions }}</p>
                    <p class="card-text">{{ p.price | currency:'INR':true }}</p>
-                   <a class="btn btn-primary" (click)="addToCart(p)">Add to Cart</a>
+                   <div class="card-footer">
+                   <a class="btn btn-primary btn-block" (click)="addToCart(p)">Add to Cart</a>
+                  </div>
                  </div>
                  </div>
                  </div>
-                 <div  *ngIf ="(i + 1)% 2 == 0" class="w-100" ></div>
+                 <div  *ngIf ="(i + 1)% 2=== 0" class="w-100" ></div>
               </ng-container>
             </div>
           </div>

@@ -4,7 +4,7 @@ import { LoginService } from '../service/login.service';
 import { HomeService } from '../service/home.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { MessengerService } from '../service/messenger.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { stringify } from '@angular/compiler/src/util';
 
 @Component({
@@ -33,7 +33,7 @@ export class HomePageComponent implements OnInit {
   localStorageProduct;
 
 
-  constructor(private loginObj : LoginService,private homeService : HomeService,
+  constructor(route: ActivatedRoute,private loginObj : LoginService,private homeService : HomeService,
     private msg: MessengerService,private router: Router) { 
     
   }

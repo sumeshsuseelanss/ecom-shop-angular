@@ -21,6 +21,7 @@ login: Login  = new Login();
 username
 hideRegister = true;
 hideError = false;
+adminFlag:boolean;
 
 @Output() cOutput =  new EventEmitter();
 
@@ -41,6 +42,6 @@ constructor( private loginService : LoginService,private router: Router,
   LoginUser(): void{
     this.username = this.employeeForm.controls.userName.value
     this.loginService.getUsers(this.username);
-    this.hideError = true
+    this.hideError = true;
   }
 }

@@ -12,6 +12,7 @@ export class LoginService {
   responseStatus;
   userNameLogin
   respBody;
+  responseRole;
   private baseUrl = 'http://localhost:8082/api/v1/user/';  
 
   constructor(private http: HttpClient,private router: Router) {}
@@ -24,6 +25,8 @@ export class LoginService {
     this.respBody =this.http.get<Login[]>((this.baseUrl), {observe: 'response'}).subscribe((response) =>{
          console.log("testing getUsers --- >");
      this.responseStatus=response.status
+     this.responseRole=response.body;
+     localStorage.setItem('userRole', this.responseRole.role);
      console.log("responseStatus --> ",this.responseStatus);
     if(this.responseStatus == 200){
       console.log("paramValue ---> ",paramValaue);
@@ -34,6 +37,8 @@ export class LoginService {
     }
      }
     );
+
+    console.log("user role ---> ",localStorage.getItem('userRole'));
   }
 
 
