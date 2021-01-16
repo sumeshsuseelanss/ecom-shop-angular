@@ -20,7 +20,8 @@ import { BillingPageComponent } from './billing-page/billing-page.component';
 import { SummaryPageComponent } from './summary-page/summary-page.component';
 import { AdminGuardGuard } from './admin-guard.guard';
 import { OrderComponent } from './order/order.component';
-import { AdminPageComponent } from './admin-page/admin-page.component'
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AdminManageProductComponent } from './admin-manage-product/admin-manage-product.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component'
     BillingPageComponent,
     SummaryPageComponent,
     OrderComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    AdminManageProductComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +79,10 @@ import { AdminPageComponent } from './admin-page/admin-page.component'
       {
         path: 'admin',
         component: AdminPageComponent
+      },
+      {
+        path: 'admin/manage-products',
+        component: AdminManageProductComponent
       }
     ])
   ],

@@ -1,0 +1,25 @@
+<app-nav-bar></app-nav-bar>
+
+<h1>Manage products(Admin only)</h1>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col">Delete/Edit</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let adminProduct of adminProducts">
+        <th scope="row">{{adminProduct.prodID}}</th>
+        <td>{{adminProduct.productName}}</td>
+        <td>{{adminProduct.price}}</td>
+        <td> 
+            <button type="button" class="btn btn-success">EDIT</button>
+            <button type="button" class="btn btn-danger">DELETE</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
