@@ -14,8 +14,7 @@ export class BillingService {
 
 
   public postAddress(addressJSONData){
-
-
+    addressJSONData.user_ID = localStorage.getItem("localStorageUserName");
     return this.http.post<Address>(this.baseUrl+"address",addressJSONData);
   }
   

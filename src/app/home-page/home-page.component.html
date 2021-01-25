@@ -25,7 +25,7 @@
           </ol>
           <div class="col">
             <div class="row">
-              <ng-container *ngFor="let p of products ; let i =index" >
+              <ng-container *ngFor="let p of products | paginate: { itemsPerPage: 4, currentPage: p }  let i =index" >
                 <div class="col"> 
                   <div class="card" style="width: 19rem;">
                   <img  class="card-img-top" src="{{p.image}}" alt="...">
@@ -43,6 +43,7 @@
               </ng-container>
             </div>
           </div>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
       <div *ngIf="itemDivEnable">
         <h1 class="my-4">Cart</h1>

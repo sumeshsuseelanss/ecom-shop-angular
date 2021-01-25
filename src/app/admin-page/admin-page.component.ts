@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Products } from '../modals/Products';
 import { AdminServiceService } from '../service/admin-service.service';
 
@@ -19,7 +20,7 @@ export class AdminPageComponent implements OnInit {
      new Category(4, 'Fruits')
   ];
 
-  constructor(private adminServiceService : AdminServiceService) { }
+  constructor(private adminServiceService : AdminServiceService,private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -28,10 +29,14 @@ export class AdminPageComponent implements OnInit {
   saveProduct(){
     console.log("added product ",this.product);
     this.adminServiceService.addProduct(this.product).subscribe( prod => {
-  
     });
+    this.router.navigateByUrl('/home');
+    
   }
 
+  editProduct(){
+    this.router.navigateByUrl('/admin/manage-products');
+  }
  
 
 }

@@ -2,6 +2,13 @@
 
 <h1>Manage products(Admin only)</h1>
 
+<p>
+  <input 
+  #query
+  (keyup)="filter(query.value)"
+  type = "text" class="form-control" placeholder="Search....">
+</p>
+
 <table class="table table-bordered">
     <thead>
       <tr>
@@ -12,14 +19,15 @@
       </tr>
     </thead>
     <tbody >
-      <tr *ngFor="let adminProduct of adminProducts">
+      <tr *ngFor="let adminProduct of filteredProducts | paginate: { itemsPerPage: 4, currentPage: p } ">
         <th scope="row">{{adminProduct.prodID}}</th>
         <td>{{adminProduct.productName}}</td>
-        <td>{{adminProduct.price}}</td>
+        <td>{{adminProduct.price | currency:'INR':true }}</td>
         <td> 
             <button type="button" class="btn btn-success">EDIT</button>
-            <button type="button" class="btn btn-danger">DELETE</button>
+            <button type="button" class="btn btn-danger"  (click)= "delete(adminProduct.prodID)">DELETE</button>
         </td>
       </tr>
     </tbody>
   </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>

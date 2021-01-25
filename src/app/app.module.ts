@@ -22,6 +22,8 @@ import { AdminGuardGuard } from './admin-guard.guard';
 import { OrderComponent } from './order/order.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminManageProductComponent } from './admin-manage-product/admin-manage-product.component'
+import {NgxPaginationModule} from 'ngx-pagination'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { AdminManageProductComponent } from './admin-manage-product/admin-manage
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NgxPaginationModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([

@@ -13,6 +13,7 @@ import { stringify } from '@angular/compiler/src/util';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  p: number = 1;
   category=[];
   products=[]
   subscription: Subscription;
