@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
     }
     );
     this.cartStorageItem = JSON.parse(localStorage.getItem("storageProductSelected"));
-    console.log(this.cartStorageItem);
+    console.log("this.cartStorageItem --> ",this.cartStorageItem);
     this.cartTotal=localStorage.getItem("localStoageItemTotal");
     console.log("cart tool",this.cartTotal);
     this.itemTotalAmount();
@@ -47,8 +47,8 @@ export class CartComponent implements OnInit {
   
   }
 
-  continueCart(){
-    
+  continueCart(totalAmount){
+    console.log("total amount --> "+totalAmount);
     this.router.navigate(['bill']);
   }
 
@@ -74,7 +74,7 @@ export class CartComponent implements OnInit {
   }
 
   amountIncrease(itemSelectedDOM,itemCount,item_price,itemCart){
-    if(Number(itemCount) >= 0){
+    if(Number(itemCount) > 0){
     let divideInt = Number(item_price)/Number(itemCount);
     console.log("item_price ",item_price,"itemCount ",itemCount,"divideInt ",divideInt)
    let updatedItemCount = Number(itemCount)+1;
@@ -100,7 +100,7 @@ export class CartComponent implements OnInit {
   }
 
   amountDecrease(itemSelectedDOM,itemCount,item_price,itemCart){
-    if(Number(itemCount) >= 0){
+    if(Number(itemCount) > 0){
     let divideInt = Number(item_price)/Number(itemCount);
     console.log("item_price ",item_price,"itemCount ",itemCount,"divideInt ",divideInt)
     let updatedItemCount = Number(itemCount)-1;

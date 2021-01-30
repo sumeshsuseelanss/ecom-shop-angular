@@ -14,6 +14,7 @@ import { stringify } from '@angular/compiler/src/util';
 })
 export class HomePageComponent implements OnInit {
   p: number = 1;
+  filteredProducts: any[];
   category=[];
   products=[]
   subscription: Subscription;
@@ -50,7 +51,7 @@ export class HomePageComponent implements OnInit {
     this.categories$  =  this.homeService.getCategories().subscribe(category=> 
     this.category=category);
     this.subscription =  this.homeService.getAllProducts().subscribe(products=> 
-    this.products=products);
+      this.filteredProducts = this.products=products);
     this.lcoalStorageUserName= localStorage.getItem("localStorageUserName");
     this.homeService.getCartCount(this.lcoalStorageUserName).subscribe( totalCount =>{
       this.totalCount = totalCount;
@@ -60,6 +61,10 @@ export class HomePageComponent implements OnInit {
        console.log("inside getMsg--Home Component",product)
      } ) 
    
+  }
+
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
   
   addToCart(procutCart){
@@ -85,7 +90,6 @@ export class HomePageComponent implements OnInit {
     this.homeService.selectedItemPost(selectedItemJsonData).subscribe( data => {
       this.data = data;
     });
-   
 
     this.selectedProduct.push(procutCart);
     this.msg.sendMsg(this.selectedProduct);
@@ -103,11 +107,19 @@ export class HomePageComponent implements OnInit {
   filterCategory(categoryName){
     if(categoryName == 'All'){
       this.homeService.getAllProducts().subscribe(products=> 
-        this.products=products);
+        this.filteredProducts =  this.products=products);
     }else{
     this.homeService.getFilteredProducts(categoryName).subscribe(products=> 
-      this.products=products);
+      this.filteredProducts =  this.products=products);
     }
   }
+
+
+  filter(query: string){
+    console.log(query);
+    this.filteredProducts = (query) ?
+    this.products.filter(p => p.productName.toLowerCase().includes(query.toLowerCase())) : 
+    this.products;
+ }
 
 }

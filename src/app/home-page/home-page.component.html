@@ -24,8 +24,16 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
           <div class="col">
+            
+            <p>
+              <input 
+              #query
+              (keyup)="filter(query.value)"
+              type = "text" class="form-control" placeholder="Search....">
+            </p>
+
             <div class="row">
-              <ng-container *ngFor="let p of products | paginate: { itemsPerPage: 4, currentPage: p }  let i =index" >
+              <ng-container *ngFor="let p of filteredProducts | paginate: { itemsPerPage: 4, currentPage: p }  let i =index" >
                 <div class="col"> 
                   <div class="card" style="width: 19rem;">
                   <img  class="card-img-top" src="{{p.image}}" alt="...">

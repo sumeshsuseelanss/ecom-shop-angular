@@ -49,6 +49,9 @@ export class BillingPageComponent implements OnInit {
     this.saveAdd = this.addresss;
   
     console.log("Save Address---> ",this.saveAdd);
+    localStorage.setItem('localStorageAddress', "Address : "+this.saveAdd.firstName+" "+this.saveAdd.lastName+" "+
+    this.saveAdd.email+" "+this.saveAdd.address+" "+this.saveAdd.state);
+    console.log("localStorageAddress ---> ",localStorage.getItem('localStorageAddress'));
     this.billingService.postAddress(this.saveAdd).subscribe( data => {
   
     });
