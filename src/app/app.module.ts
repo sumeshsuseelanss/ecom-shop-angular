@@ -24,6 +24,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminManageProductComponent } from './admin-manage-product/admin-manage-product.component'
 import {NgxPaginationModule} from 'ngx-pagination'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SummaryPageComponent,
     OrderComponent,
     AdminPageComponent,
-    AdminManageProductComponent
+    AdminManageProductComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +89,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       {
         path: 'admin/manage-products',
         component: AdminManageProductComponent
+      },
+      {
+        path:'order-history',
+        component: OrderHistoryComponent
       }
     ])
   ],

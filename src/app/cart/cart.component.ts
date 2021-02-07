@@ -48,6 +48,7 @@ export class CartComponent implements OnInit {
   }
 
   continueCart(totalAmount){
+    localStorage.setItem('totalAmountLocalStorage', totalAmount);
     console.log("total amount --> "+totalAmount);
     this.router.navigate(['bill']);
   }

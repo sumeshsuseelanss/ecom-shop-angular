@@ -29,9 +29,6 @@ export class HomeService {
   }
 
   public selectedItemPost(selectedItemJsonData){
-    console.log("selectedItemJsonData  -> ",selectedItemJsonData);
-    console.log("this.baseUrl archieveItem",this.baseUrl+"archieveItem");
-    console.log("Item_selected --> ",Itemselected);
     return this.http.post<Itemselected>(this.baseUrl+"archieveItem",selectedItemJsonData);
   }
 
